@@ -1,0 +1,35 @@
+# === Parametry ===
+$folder = "D:\TestDysk"               # Ścieżka docelowa
+$file = "test_zapelnienia_dysku.bin" # Nazwa pliku
+$targetSizeGB = 30                    # Ilość GB do wygenerowania
+$blockSizeMB = 10                     # Rozmiar pojedynczego bloku
+
+# === Obliczenia pomocnicze ===
+$totalBlocks = [math]::Floor(($targetSizeGB * 1024) / $blockSizeMB)
+$blockSizeBytes = $blockSizeMB * 1024 * 1024
+
+# === Tworzenie katalogu (jeśli nie istnieje) ===
+if (!(Test-Path -Path $folder)) {
+    New-Item -Path $folder -ItemType Directory | Out-Null
+}
+
+$fullPath = Join-Path $folder $file
+
+# Bufor bajtów, domyślnie wypełniony zerami
+$buffer = New-Object byte[] $blockSizeBytes
+
+# === Tworzenie pliku ===
+$stream = [System.IO.File]::OpenWrite($fullPath)
+try {
+    for ($i = 1; $i -le $totalBlocks; $i++) {
+        $stream.Write($buffer, 0, $buffer.Length)
+        if ($i % 10 -eq 0) {
+            $writtenMB = $i * $blockSizeMB
+            Write-Host "Napisano $writtenMB MB..."
+        }
+    }
+}
+finally {
+    $stream.Close()
+    Write-Host "Ukonczono: $fullPath"
+}

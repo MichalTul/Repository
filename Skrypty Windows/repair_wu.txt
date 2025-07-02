@@ -1,0 +1,7 @@
+net stop wuauserv
+del /f /s /q C:\Windows\SoftwareDistribution\*.*
+del /f /s /q C:\Windows\system32\catroot2
+net start wuauserv
+wuauclt /detectnow /reportnow
+DISM.exe /Online /Cleanup-image /Restorehealth
+sfc /scannow
