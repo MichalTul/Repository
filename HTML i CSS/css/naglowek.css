@@ -1,0 +1,105 @@
+nav
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;  /* Logo po lewej, menu po prawej */
+    padding: 10px;
+    background-color: #001f5d;
+}
+
+/*    LOGO    */
+
+.logo img {
+    height: 50px;   /* Ustalona wysokość, szerokość dopasowuje się automatycznie */
+    width: auto;
+}
+
+/*    MENU    */
+
+nav ul
+{
+    list-style-type: none;            /* Reset listy */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;        /* Przesuwa menu na prawą stronę */
+    width: 100%;                      /* Umożliwia pełną szerokość dla justify-content */
+}
+
+/* Każdy element menu */
+nav ul li
+{
+    position: relative;
+}
+
+/* Linki w menu */
+nav ul li a
+{
+    display: block;
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+}
+
+/* Podmenu */
+nav ul li ul
+{
+    opacity: 0; /* Domyślnie ukryty */
+    transform: scaleY(0); /* Ukrywanie w pionie */
+    transform-origin: top; /* Skalowanie od góry */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Płynna animacja dla obu właściwości */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #001f5d;
+    min-width: 100px;
+    z-index: 10;
+    display: block;                         /* Wyświetlanie elementów w podmenu pionowo */
+}
+
+/* Elementy podmenu */
+nav ul li ul li
+{
+    display: block;
+}
+
+/* Linki w podmenu */
+nav ul li ul li a
+{
+    display: block;
+    padding: 10px;
+    color: white;
+}
+
+/* Pokazywanie podmenu */
+nav ul li:hover ul
+{
+    opacity: 1;
+    transform: scaleY(1);
+}
+/*      KONIEC KONTENERA NAV      */
+
+/*      KONTENER HEADER     */
+.header
+{
+    display: flex;
+    justify-content: center;  /* Centrowanie poziome */
+    align-items: center;  /* Centrowanie pionowe */
+    height: 80vh;  /* 80% wysokości ekranu */
+    padding: 0;
+    text-align: center;
+    background: url('../img/tlo.jpg') no-repeat top center;
+    background-size: cover;
+    color: white;
+    font-size: 30px;
+}
+
+.text-box
+{
+    width: 66.66%;    /* 2/3 szerokości ekranu */
+    margin: 0 auto;   /* Centrowanie */
+    text-align: center;  /* Wyśrodkowanie tekstu */
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5); /* Opcjonalne tło dla lepszej widoczności */
+    color: white;
+}

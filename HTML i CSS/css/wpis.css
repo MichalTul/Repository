@@ -1,0 +1,133 @@
+.tekst
+{
+    font-size: 1.2rem;
+    background: none; /* Brak tła */
+    text-align: left;
+    margin: 20px; /* na wszystkie strony */
+}
+
+.tekst img
+{
+    width: 100%; /* Szerokość */
+    height: auto; /* Zachowanie proporcji */
+    border-radius: 10px; /* Zaokrąglone rogi */
+    object-fit: cover;
+}
+
+.tekst_link
+{
+    width: 100%; /* Szerokość */
+    height: auto; /* Zachowanie proporcji */
+    text-align: center;
+    justify-content: center;
+}
+
+.slider-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto; /* Wyśrodkowanie */
+    width: 50%;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+/* Media query dla urządzeń o szerokości ekranu poniżej 768px (np. tablety i telefony) */
+@media (max-width: 768px) {
+    .slider-container {
+        width: 90%; /* Szerokość slidera na mniejszych ekranach */
+    }
+}
+
+/* Media query dla urządzeń o szerokości ekranu poniżej 480px (np. telefony) */
+@media (max-width: 480px) {
+    .slider-container {
+        width: 100%; /* Pełna szerokość slidera na małych ekranach */
+    }
+}
+
+.slider {
+    display: flex;
+    width: 200%;
+    animation: slide 10s linear infinite;
+}
+
+.slide {
+    width: 25%;
+    flex-shrink: 0;
+}
+
+/* Na ekranach mniejszych niż 768px (tablety) - wyświetlanie 2 obrazków */
+@media (max-width: 768px) {
+    .slide {
+        width: 50%; /* 100% / 2 obrazki */
+    }
+}
+
+/* Na ekranach mniejszych niż 480px (telefony) - wyświetlanie 1 obrazka */
+@media (max-width: 480px) {
+    .slide {
+        width: 100%; /* 1 obrazek na ekranie */
+    }
+}
+
+.slide img {
+    width: 100%;
+    display: block;
+}
+
+@keyframes slide {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); } /* Przesunięcie tylko o połowę (4 z 8 obrazków) */
+}
+
+/* Na bardzo małych ekranach (np. telefony) zmniejszamy animację */
+@media (max-width: 480px) {
+    @keyframes slide {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(-100%); /* Przesunięcie o 1 obrazek */
+        }
+    }
+}
+
+/* Kontener galerii */
+.galeria {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Tworzy 3 kolumny */
+    gap: 10px; /* Odstępy między obrazami */
+    padding: 20px;
+}
+
+/* Elementy galerii */
+.galeria-item {
+    overflow: hidden; /* Ukrywa część obrazu, jeśli jest za duży */
+    border-radius: 10px; /* Zaokrąglone rogi */
+}
+
+.galeria-item img {
+    width: 100%; /* Szerokość obrazu na 100% szerokości kontenera */
+    height: auto; /* Zachowanie proporcji */
+    display: block; /* Usuwa marginesy pod obrazem */
+    transition: transform 0.3s ease; /* Efekt powiększenia po najechaniu */
+}
+
+/* Responsywność - 2 kolumny na średnich ekranach (768px+) */
+@media (max-width: 1024px) {
+    .galeria {
+        grid-template-columns: repeat(2, 1fr); /* 2 kolumny */
+    }
+}
+
+/* Responsywność - 1 kolumna na małych ekranach (600px+) */
+@media (max-width: 600px) {
+    .galeria {
+        grid-template-columns: 1fr; /* 1 kolumna */
+    }
+}
